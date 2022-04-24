@@ -1,0 +1,30 @@
+A beadandó feladat kiírása:
+Készítsen konzolos nyilvántartó programot egészségügy,
+oktatás vagy gazdaság témakörön belül. Minimális funkcionalitások:
+- Elemek listájának lekérdezése, kiíratása a konzolra.
+- Új elem rögzítése.
+- Adott elem módosítása.
+- Adott elem törlése.
+Javasolt mindezeket menübe szervezni, hogy a felhasználó dönthesse
+el melyik műveletet szeretné elvégezni, illetve hányszor. Ötödik
+menüpontként szerepelhet egy kilépés, amivel befejeződik a program futása.
+A felhasználóval a konzol segítségével kommunikáljon (adatbekérés és
+kiíratás). Az elemek adatait pedig XML struktúrában kezelje, tárolja.
+A program legyen struktúrált és jól dokumentált. A dokumentációnak
+tartalmaznia kell a program célját és felépítését (pl. osztályok és XML
+tag-ek céljai, funkciói). A dokumentáció készülhet Javadoc, README.md
+vagy önálló word dokumentumként.
+
+A hallgatóknak önálló megoldásokat kell benyújtani, két hallgató nem oldhatja meg ugyanazt a feladatot.
+
+Felmerült a kérdés, hogy csak és kizárólag konzolosan lehet-e kommunikálni
+a felhasználóval. Nem, nem kötelező, de ez az elvárt minimum. Amennyiben valaki
+vizuális felületet is készít, akkor annyit kérek, hogy legyen felhasználóbarát a felület.
+
+
+
+A megoldásokat május 13-án éjfélig kell benyújtaniuk. A benyújtás a zárthelyi
+dolgozathoz hasonlóan GitHub segítségével történik:
+1. Hozzanak létre egy új repository-t PMI_C2_beadando néven.
+2. Ebbe a repository-ba töltsék fel a megoldást (Commit and Push).
+3. Teams üzenetben vagy email-ben (csekok@gamma.ttk.pte.hu) küldjék el a repository linkjét.

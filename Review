@@ -1,0 +1,12 @@
+Szeretnék segítséget adni az önellenőrzéshez. Arra kérek Mindenkit,
+hogy a beadás előtt győződjön meg róla, hogy a megoldása:
+
+* a megadott témakörökön belül készült;
+* ha valid adatokat ad meg, akkor szépen lefut;
+* érdemes invalid adatokkal is megpróbálkozni (pl. ahol számot vár szöveget ad meg, mint bemenő adat);
+* tartalmazza a CRUD műveleteket (Create, Read, Update, Delete);
+* amikor felhasználóval kommunikál, akkor van bekérő üzenet és ahol szükséges, ott adatvalidáció is;
+* az adatokat két futás között XML fájlban tárolja (van adatbetöltés és mentés);
+* tartalmaz dokumentációt a program, az osztályok és XML tag-ek céljával, funkcióival.
+
+Ha ezen pontok teljesülnek, akkor rendben lesz a beadandójuk.
