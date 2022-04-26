@@ -11,7 +11,7 @@ public class Main {
         int valaszt = be.nextInt();
         while(valaszt != 5 || valaszt >= 6 || valaszt <= 0){
             if(valaszt == 1){
-                meth.avg();
+                out.printf("The average of the given grades: %.2f", meth.avg());
             }
             if(valaszt == 2){
                 out.println("2");

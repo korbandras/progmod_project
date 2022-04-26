@@ -4,7 +4,7 @@ import java.util.Scanner;
 import static java.lang.System.out;
 
 public class Methods {
-    public void avg(){
+    public double avg(){
         Scanner be = new Scanner(System.in);
         double average;
         int grade;
@@ -19,8 +19,11 @@ public class Methods {
             sum = sum + grade;
         }
         average = sum / howmany;
+        /*
         out.printf("Átlag: %.2f", average);
         out.println();
         out.println(list);
+         */
+        return average;
     }
 }
