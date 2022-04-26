@@ -1,16 +1,15 @@
 import java.util.Scanner;
 import static java.lang.System.out;
-import static java.lang.System.setOut;
+
 
 public class Main {
     public static void main(String[] args) {
         Methods meth = new Methods();
         Scanner be = new Scanner(System.in);
-        out.println("Válassz:\n1 - Average\n2 - Delete grade\n3 - Modify grade\n4 - Calculate\n5 - Exit");
-        int valaszt = 0;
-        while(valaszt != 5){
-            out.println("Válaszz");
-            valaszt = be.nextInt();
+        out.println("1 - Average\n2 - Delete grade\n3 - Modify grade\n4 - Calculate\n5 - Exit");
+        out.println("Choose from the options above:");
+        int valaszt = be.nextInt();
+        while(valaszt != 5 || valaszt >= 6 || valaszt <= 0){
             if(valaszt == 1){
                 meth.avg();
             }

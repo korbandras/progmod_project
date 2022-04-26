@@ -4,25 +4,23 @@ import java.util.Scanner;
 import static java.lang.System.out;
 
 public class Methods {
-    public double avg(){
+    public void avg(){
         Scanner be = new Scanner(System.in);
-        double avg;
-        int grade, sum = 0, db = 0;
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        out.println("Insert grade:");
-        grade = be.nextInt();
-        boolean ok = true;
-        while(ok){
-            if(grade >= 1 && grade <= 5){
-                list.add(grade);
-                sum += grade;
-                db++;
-            }
-            else{
-                ok = false;
-            }
+        double average;
+        int grade;
+        double sum = 0, howmany;
+        ArrayList<Integer> list = new ArrayList<>();
+        out.println("How many grades you have?");
+        howmany = be.nextInt();
+        for(int i = 0; i < howmany; i++){
+            out.printf("Insert your %d. grade: ", i+1);
+            grade = be.nextInt();
+            list.add(grade);
+            sum = sum + grade;
         }
-        avg = sum / db;
-        return avg;
+        average = sum / howmany;
+        out.printf("Átlag: %.2f", average);
+        out.println();
+        out.println(list);
     }
 }
