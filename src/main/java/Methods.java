@@ -20,6 +20,7 @@ public class Methods {
         for(int i = 0; i < howmany; i++){
             out.printf("Insert your %d. grade: ", i+1);
             grade = be.nextInt();
+            /*
             if(grade >= 1 && grade <= 5){
                 String thingy = String.valueOf(grade);
                 //String thingy = grade + sub + crd;
@@ -28,12 +29,12 @@ public class Methods {
             }
             else{
                 out.println("Given number not a grade.");
-                out.printf("Insert your %d. grade: ", i+1);
-                grade = be.nextInt();
-                String thingy = String.valueOf(grade);
-                list.add(thingy);
-                sum = sum + grade;
             }
+             */
+            String thingy = String.valueOf(grade);
+            //String thingy = grade + sub + crd;
+            list.add(thingy);
+            sum = sum + grade;
             /*
             out.printf("%d. subject:", i+1);
             sub = be.nextLine();
