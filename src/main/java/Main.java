@@ -1,14 +1,21 @@
-
+/*
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 import static java.lang.System.err;
 import static java.lang.System.out;
 
 
 public class Main {
+    private static final Scanner be = new Scanner(System.in);
+    private ArrayList<Object> list = new ArrayList();
+
     public static void main(String[] args) {
         Methods meth = new Methods();
-        Scanner be = new Scanner(System.in);
+        meth.menuProcessing(ArrayList< List >);
+
+
         try {
             out.println("1 - Average\n2 - KKI\n3 - Modify grade\n4 - Calculate\n5 - Exit");
             out.println("Choose from the options above:");
@@ -39,4 +46,5 @@ public class Main {
             out.println("End of program - Exiting");
         }
     }
-}
+
+}*/
