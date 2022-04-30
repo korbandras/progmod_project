@@ -19,44 +19,50 @@ import java.util.Scanner;
 import static java.lang.System.in;
 import static java.lang.System.out;
 
-public class Main1 {
+public class Main1
+{
 
     private static final Scanner be = new Scanner(System.in);
     private static final String filepath = "src/main/resources/grades.xml";
 
-    public static void main(String[] args) {
-        //String filepath = "src/main/resources/grades.xml";
+    public static void main(String[] args)
+    {
         out.println("Grades.xml so far:");
         ArrayList<Grades> grades = readGradesFromXML(filepath);
-        //out.println(grades);
         menu(grades);
         saveGradestoXML(grades, filepath);
     }
 
-    private static void menu(ArrayList<Grades> grades) {
+    private static void menu(ArrayList<Grades> grades)
+    {
         int choice = -1;
-        while(choice != 7){
+        while(choice != 7)
+        {
             out.println("1 - List Subjects and Grades\r\n2 - Add New Subject\r\n3 - Modify Subject\r\n" +
                     "4 - Delete Subject\r\n5 - Average Calculator\r\n6 - KKI Calculator\r\n7 - Exit");
-            try{
+            try
+            {
                 choice = be.nextInt();
             }
-            catch (InputMismatchException e){
+            catch (InputMismatchException e)
+            {
                 out.println("Not a number.");
             }
             be.nextLine();
-            switch (choice){
-                case 1 -> listGrades(/*grades*/);
+            switch (choice)
+            {
+                case 1 -> listGrades();
                 case 2 -> addNewGrade(grades);
                 case 3 -> modifyGrade(grades);
                 case 4 -> deleteGrade(grades);
-                case 5 -> avg(/*grades*/);
-                case 6 -> kki(/*grades*/);
+                case 5 -> avg();
+                case 6 -> kki();
             }
         }
     }
 
-    private static void kki(/*ArrayList<Grades> grades*/) {
+    private static void kki()
+    {
         double kki, devider = 30;
         //out.println(sumOfDoneTimesGrade());
         //out.println(DoneCrd());
@@ -65,9 +71,11 @@ public class Main1 {
         out.printf("Your KKI based on Grades.xml is: %.2f", kki);
     }
 
-    private static double UnderTook() {
+    private static double UnderTook()
+    {
         double undertook = 0;
-        try{
+        try
+        {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(filepath);
@@ -76,18 +84,10 @@ public class Main1 {
             NodeList childNodeList = rootElement.getChildNodes();
             Node node;
 
-            //System.out.println(rootElement.getNodeName());
-            //System.out.println(rootElement.getNodeType());
-            //System.out.println("Element node short value: " + Node.ELEMENT_NODE);
-            //System.out.println("Text node short value: " + Node.TEXT_NODE);
-            //System.out.println(rootElement.getTextContent());
-
-            for(int i = 0; i < childNodeList.getLength(); i++){
+            for(int i = 0; i < childNodeList.getLength(); i++)
+            {
                 node = childNodeList.item(i);
-                //System.out.println(i + ". node:");
-                //System.out.println(node.getNodeType());
-                //System.out.println(node.getNodeName());
-                //System.out.println(node.getTextContent());
+
                 if(node.getNodeType() == Node.ELEMENT_NODE){
                     NodeList childNodesOfGradesTag = node.getChildNodes();
                     String crd ="";
@@ -103,15 +103,18 @@ public class Main1 {
                 }
             }
         }
-        catch (Exception e){
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return undertook;
     }
 
-    private static double DoneCrd() {
+    private static double DoneCrd()
+    {
         double done = 0;
-        try{
+        try
+        {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(filepath);
@@ -120,50 +123,44 @@ public class Main1 {
             NodeList childNodeList = rootElement.getChildNodes();
             Node node;
 
-            //System.out.println(rootElement.getNodeName());
-            //System.out.println(rootElement.getNodeType());
-            //System.out.println("Element node short value: " + Node.ELEMENT_NODE);
-            //System.out.println("Text node short value: " + Node.TEXT_NODE);
-            //System.out.println(rootElement.getTextContent());
-
             for(int i = 0; i < childNodeList.getLength(); i++){
                 node = childNodeList.item(i);
-                //System.out.println(i + ". node:");
-                //System.out.println(node.getNodeType());
-                //System.out.println(node.getNodeName());
-                //System.out.println(node.getTextContent());
+
                 if(node.getNodeType() == Node.ELEMENT_NODE){
                     NodeList childNodesOfGradesTag = node.getChildNodes();
                     String grd ="", crd ="";
-                    for(int j = 0; j < childNodesOfGradesTag.getLength(); j++){
+                    for(int j = 0; j < childNodesOfGradesTag.getLength(); j++)
+                    {
                         Node childNodeOfGradesTag = childNodesOfGradesTag.item(j);
-                        if(childNodeOfGradesTag.getNodeType() == Node.ELEMENT_NODE){
-                            switch (childNodeOfGradesTag.getNodeName()){
+                        if(childNodeOfGradesTag.getNodeType() == Node.ELEMENT_NODE)
+                        {
+                            switch (childNodeOfGradesTag.getNodeName())
+                            {
                                 case "Grade" -> grd = childNodeOfGradesTag.getTextContent();
                                 case "Credit" -> crd = childNodeOfGradesTag.getTextContent();
                             }
                         }
                     }
 
-                    //out.println("Grade: " + grd);
-                    //out.println();
-                    //grade.add(new Grades(sub, Integer.parseInt(crd), Integer.parseInt(grd)));
-                    //out.println(grade);
-                    if(Integer.parseInt(grd) != 1){
+                    if(Integer.parseInt(grd) != 1)
+                    {
                         done = done + Integer.parseInt(crd);
                     }
                 }
             }
         }
-        catch (Exception e){
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return done;
     }
 
-    private static double sumOfDoneTimesGrade() {
+    private static double sumOfDoneTimesGrade()
+    {
         double sum = 0;
-        try{
+        try
+        {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(filepath);
@@ -172,24 +169,19 @@ public class Main1 {
             NodeList childNodeList = rootElement.getChildNodes();
             Node node;
 
-            //System.out.println(rootElement.getNodeName());
-            //System.out.println(rootElement.getNodeType());
-            //System.out.println("Element node short value: " + Node.ELEMENT_NODE);
-            //System.out.println("Text node short value: " + Node.TEXT_NODE);
-            //System.out.println(rootElement.getTextContent());
-
-            for(int i = 0; i < childNodeList.getLength(); i++){
+            for(int i = 0; i < childNodeList.getLength(); i++)
+            {
                 node = childNodeList.item(i);
-                //System.out.println(i + ". node:");
-                //System.out.println(node.getNodeType());
-                //System.out.println(node.getNodeName());
-                //System.out.println(node.getTextContent());
-                if(node.getNodeType() == Node.ELEMENT_NODE){
+
+                if(node.getNodeType() == Node.ELEMENT_NODE)
+                {
                     NodeList childNodesOfGradesTag = node.getChildNodes();
                     String grd ="", crd ="";
-                    for(int j = 0; j < childNodesOfGradesTag.getLength(); j++){
+                    for(int j = 0; j < childNodesOfGradesTag.getLength(); j++)
+                    {
                         Node childNodeOfGradesTag = childNodesOfGradesTag.item(j);
-                        if(childNodeOfGradesTag.getNodeType() == Node.ELEMENT_NODE){
+                        if(childNodeOfGradesTag.getNodeType() == Node.ELEMENT_NODE)
+                        {
                             switch (childNodeOfGradesTag.getNodeName()){
                                 case "Grade" -> grd = childNodeOfGradesTag.getTextContent();
                                 case "Credit" -> crd = childNodeOfGradesTag.getTextContent();
@@ -197,31 +189,29 @@ public class Main1 {
                         }
                     }
 
-                    //out.println("Grade: " + grd);
-                    //out.println();
-                    //grade.add(new Grades(sub, Integer.parseInt(crd), Integer.parseInt(grd)));
-                    //out.println(grade);
                     sum = sum + Integer.parseInt(grd)*Integer.parseInt(crd);
                 }
             }
         }
-        catch (Exception e){
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return sum;
     }
 
-    private static void avg(/*ArrayList<Grades> grades*/) {
+    private static void avg(/*ArrayList<Grades> grades*/)
+    {
         double avg = gradesSum(/*grades*/)/gradesNo(/*grades*/);
         //out.println(gradesSum(grades));
         //out.println(gradesNo(grades));
         out.printf("Average of the grades: %.2f\n", avg);
     }
 
-    private static double gradesNo(/*ArrayList<Grades> grades*/) {
-        //ArrayList<Grades> gradeAvg = new ArrayList<>();
+    private static double gradesNo() {
         double No = 0;
-        try{
+        try
+        {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(filepath);
@@ -230,49 +220,39 @@ public class Main1 {
             NodeList childNodeList = rootElement.getChildNodes();
             Node node;
 
-            //System.out.println(rootElement.getNodeName());
-            //System.out.println(rootElement.getNodeType());
-            //System.out.println("Element node short value: " + Node.ELEMENT_NODE);
-            //System.out.println("Text node short value: " + Node.TEXT_NODE);
-            //System.out.println(rootElement.getTextContent());
-
-            for(int i = 0; i < childNodeList.getLength(); i++){
+            for(int i = 0; i < childNodeList.getLength(); i++)
+            {
                 node = childNodeList.item(i);
-                //System.out.println(i + ". node:");
-                //System.out.println(node.getNodeType());
-                //System.out.println(node.getNodeName());
-                //System.out.println(node.getTextContent());
-                if(node.getNodeType() == Node.ELEMENT_NODE){
+
+                if(node.getNodeType() == Node.ELEMENT_NODE)
+                {
                     NodeList childNodesOfGradesTag = node.getChildNodes();
-                    //String grd ="";
-                    for(int j = 0; j < childNodesOfGradesTag.getLength(); j++){
+                    for(int j = 0; j < childNodesOfGradesTag.getLength(); j++)
+                    {
                         Node childNodeOfGradesTag = childNodesOfGradesTag.item(j);
-                        if(childNodeOfGradesTag.getNodeType() == Node.ELEMENT_NODE){
-                            if (childNodeOfGradesTag.getNodeName().equals("Grade")){
-                                //grd = childNodeOfGradesTag.getTextContent();
+                        if(childNodeOfGradesTag.getNodeType() == Node.ELEMENT_NODE)
+                        {
+                            if (childNodeOfGradesTag.getNodeName().equals("Grade"))
+                            {
                                 No++;
                             }
                         }
                     }
-
-                    //out.println("Grade: " + grd);
-                    //out.println();
-                    //grade.add(new Grades(sub, Integer.parseInt(crd), Integer.parseInt(grd)));
-                    //out.println(grade);
-
                 }
             }
         }
-        catch (Exception e){
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return No;
     }
 
-    private static double gradesSum(/*ArrayList<Grades> grades*/){
-        //ArrayList<Grades> gradeAvg = new ArrayList<>();
+    private static double gradesSum()
+    {
         double sum = 0;
-        try{
+        try
+        {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document document = documentBuilder.parse(filepath);
@@ -281,138 +261,145 @@ public class Main1 {
             NodeList childNodeList = rootElement.getChildNodes();
             Node node;
 
-            //System.out.println(rootElement.getNodeName());
-            //System.out.println(rootElement.getNodeType());
-            //System.out.println("Element node short value: " + Node.ELEMENT_NODE);
-            //System.out.println("Text node short value: " + Node.TEXT_NODE);
-            //System.out.println(rootElement.getTextContent());
-
-            for(int i = 0; i < childNodeList.getLength(); i++){
+            for(int i = 0; i < childNodeList.getLength(); i++)
+            {
                 node = childNodeList.item(i);
-                //System.out.println(i + ". node:");
-                //System.out.println(node.getNodeType());
-                //System.out.println(node.getNodeName());
-                //System.out.println(node.getTextContent());
-                if(node.getNodeType() == Node.ELEMENT_NODE){
+
+                if(node.getNodeType() == Node.ELEMENT_NODE)
+                {
                     NodeList childNodesOfGradesTag = node.getChildNodes();
                     String grd ="";
-                    for(int j = 0; j < childNodesOfGradesTag.getLength(); j++){
+                    for(int j = 0; j < childNodesOfGradesTag.getLength(); j++)
+                    {
                         Node childNodeOfGradesTag = childNodesOfGradesTag.item(j);
-                        if(childNodeOfGradesTag.getNodeType() == Node.ELEMENT_NODE){
-                            if (childNodeOfGradesTag.getNodeName().equals("Grade")){
+                        if(childNodeOfGradesTag.getNodeType() == Node.ELEMENT_NODE)
+                        {
+                            if (childNodeOfGradesTag.getNodeName().equals("Grade"))
+                            {
                                 grd = childNodeOfGradesTag.getTextContent();
                             }
                         }
                     }
-
-                    //out.println("Grade: " + grd);
-                    //out.println();
-                    //grade.add(new Grades(sub, Integer.parseInt(crd), Integer.parseInt(grd)));
-                    //out.println(grade);
                     sum = sum + Integer.parseInt(grd);
                 }
             }
         }
-        catch (Exception e){
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return sum;
     }
 
-    private static void deleteGrade(ArrayList<Grades> grades) {
+    private static void deleteGrade(ArrayList<Grades> grades)
+    {
         out.print("Subject you want to delete: ");
-        try{
+        try
+        {
             grades.remove(findGrade(grades, be.nextLine()));
         }
-        catch (IllegalArgumentException e){
+        catch (IllegalArgumentException e)
+        {
             out.println(e.getMessage());
         }
     }
 
-    private static void modifyGrade(ArrayList<Grades> grades) {
+    private static void modifyGrade(ArrayList<Grades> grades)
+    {
         out.print("Subject you want to modify: ");
-        try{
+        try
+        {
             Grades grades1 = findGrade(grades, be.nextLine());
             grades.set(grades.indexOf(grades1), new Grades(grades1.getSubject(), inputCrd(), inputGrd()));
         }
-        catch (IllegalArgumentException e){
+        catch (IllegalArgumentException e)
+        {
             out.println(e.getMessage());
         }
     }
 
-    private static Grades findGrade(ArrayList<Grades> grade, String sub) throws IllegalArgumentException{
-        for(Grades grades : grade){
-            if(grades.getSubject().equals(sub)){
+    private static Grades findGrade(ArrayList<Grades> grade, String sub) throws IllegalArgumentException
+    {
+        for(Grades grades : grade)
+        {
+            if(grades.getSubject().equals(sub))
+            {
                 return grades;
             }
         }
         throw new IllegalArgumentException("No subject with given name: " + sub);
     }
 
-    private static void addNewGrade(ArrayList<Grades> grades) {
+    private static void addNewGrade(ArrayList<Grades> grades)
+    {
         grades.add(new Grades(inputSub(), inputCrd(), inputGrd()));
     }
 
-    private static int inputGrd() {
+    private static int inputGrd()
+    {
         int grd = 0;
-        while(grd < 1 || grd > 5) {
+        while(grd < 1 || grd > 5)
+        {
             out.print("Enter the grade of the new subject: ");
-            try {
+            try
+            {
                 grd = be.nextInt();
-                if (grd > 5 || grd < 1) {
+                if (grd > 5 || grd < 1)
+                {
                     out.println("Grade must be between 1 and 5");
                 }
-            } catch (InputMismatchException e) {
+            } catch (InputMismatchException e)
+            {
                 out.println("Grade must be a number.");
             }
         }
         return grd;
     }
 
-    private static int inputCrd() {
-        int crd;
+    private static int inputCrd()
+    {
+
         out.print("Enter the credit value of new subject: ");
         return be.nextInt();
     }
 
-    private static String inputSub() {
+    private static String inputSub()
+    {
         out.print("Enter new subject: ");
         return be.nextLine();
     }
 
-    private static void listGrades(/*ArrayList<Grades> grades*/) {
+    private static void listGrades()
+    {
         readGradesFromXML(filepath);
     }
 
-    private static ArrayList<Grades> readGradesFromXML(String filepath){
+    private static ArrayList<Grades> readGradesFromXML(String filepath1)
+    {
         ArrayList<Grades> grade = new ArrayList<>();
-        try{
+        try
+        {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-            Document document = documentBuilder.parse(filepath);
+            Document document = documentBuilder.parse(filepath1);
 
             Element rootElement = document.getDocumentElement();
             NodeList childNodeList = rootElement.getChildNodes();
             Node node;
 
-            //System.out.println(rootElement.getNodeName());
-            //System.out.println(rootElement.getNodeType());
-            //System.out.println("Element node short value: " + Node.ELEMENT_NODE);
-            //System.out.println("Text node short value: " + Node.TEXT_NODE);
-            //System.out.println(rootElement.getTextContent());
-
-            for(int i = 0; i < childNodeList.getLength(); i++){
+            for(int i = 0; i < childNodeList.getLength(); i++)
+            {
                 node = childNodeList.item(i);
-                //System.out.println(i + ". node:");
-                //System.out.println(node.getNodeType());
-                //System.out.println(node.getNodeName());
-                //System.out.println(node.getTextContent());
-                if(node.getNodeType() == Node.ELEMENT_NODE){
+
+                if(node.getNodeType() == Node.ELEMENT_NODE)
+                {
                     NodeList childNodesOfGradesTag = node.getChildNodes();
                     String sub = "", crd = "", grd ="";
-                    for(int j = 0; j < childNodesOfGradesTag.getLength(); j++){
+                    for(int j = 0; j < childNodesOfGradesTag.getLength(); j++)
+                    {
                         Node childNodeOfGradesTag = childNodesOfGradesTag.item(j);
-                        if(childNodeOfGradesTag.getNodeType() == Node.ELEMENT_NODE){
+                        if(childNodeOfGradesTag.getNodeType() == Node.ELEMENT_NODE)
+                        {
                             switch (childNodeOfGradesTag.getNodeName()){
                                 case "Subject" -> sub = childNodeOfGradesTag.getTextContent();
                                 case "Credit" -> crd = childNodeOfGradesTag.getTextContent();
@@ -429,18 +416,22 @@ public class Main1 {
                 }
             }
         }
-        catch (Exception e){
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return grade;
     }
 
-    private static void saveGradestoXML(ArrayList<Grades> grade, String filepath){
-        try{
+    private static void saveGradestoXML(ArrayList<Grades> grade, String filepath1)
+    {
+        try
+        {
             Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
             Element root = document.createElement("Semester");
             document.appendChild(root);
-            for(Grades grades : grade){
+            for(Grades grades : grade)
+            {
                 Element gradeElement = document.createElement("Sub");
                 root.appendChild(gradeElement);
                 childElement(document, gradeElement, "Subject", grades.getSubject());
@@ -454,12 +445,14 @@ public class Main1 {
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             transformer.transform(source, result);
         }
-        catch (Exception e){
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
     }
 
-    private static void childElement(Document document, Element par, String tag, String text){
+    private static void childElement(Document document, Element par, String tag, String text)
+    {
         Element element = document.createElement(tag);
         element.setTextContent(text);
         par.appendChild(element);
